@@ -4,7 +4,10 @@
   "description": "",
   "main": "code.js",
   "dependencies": {
-    "axios": "^0.21.0"
+    "axios": "^0.21.0",
+    "browsersync": "0.0.1-security",
+    "bulma": "^0.9.1",
+    "jquery": "^3.5.1"
   },
   "devDependencies": {},
   "scripts": {
