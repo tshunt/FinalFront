@@ -19,7 +19,7 @@ document.onreadystatechange = async function() {
 
     let res2 = await axios({
         method:'get',
-        url: `https://stark-depths-67325.herokuapp.com/meeting/0`,
+        url: `https://stark-depths-67325.herokuapp.com/userInfo`,
         withCredentials: true
     })
 
