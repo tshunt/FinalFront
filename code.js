@@ -30,7 +30,7 @@ document.onreadystatechange = async function() {
     let root = document.querySelector("#root");
 
     div.innerHTML = res.data.className;
-    div.innerHTML = res2.data.className;
+    div2.innerHTML = res2.data.user;
     root.appendChild(div);
     root.appendChild(div2);
 }
