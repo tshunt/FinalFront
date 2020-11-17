@@ -23,6 +23,8 @@ document.onreadystatechange = async function() {
         withCredentials: true
     })
 
+    console.log(res);
+    console.log(res2);
     let div = document.createElement("div");
     let div2 = document.createElement("div");
     let root = document.querySelector("#root");
