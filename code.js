@@ -17,9 +17,17 @@ document.onreadystatechange = async function() {
         withCredentials: true
     })
 
+    let res2 = await axios({
+        method:'get',
+        url: `https://stark-depths-67325.herokuapp.com/meeting/0`,
+        withCredentials: true
+    })
+
     let div = document.createElement("div");
+    let div2 = document.createElement("div");
     let root = document.querySelector("#root");
 
     div.innerHTML = res.data.className;
+    div.innerHTML = res2.data.className;
     root.appendChild(div);
 }
