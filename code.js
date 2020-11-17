@@ -30,4 +30,5 @@ document.onreadystatechange = async function() {
     div.innerHTML = res.data.className;
     div.innerHTML = res2.data.className;
     root.appendChild(div);
+    root.appendChild(div2);
 }
