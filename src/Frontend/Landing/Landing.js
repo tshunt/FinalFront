@@ -23,10 +23,10 @@ function landingView() {
           <div class="navbar-end">
             <div class="navbar-item">
               <div class="buttons">
-                <a class="button is-info">
+                <a class="button is-info" id="signUpButton">
                   <strong>Sign up</strong>
                 </a>
-                <a class="button is-light">
+                <a class="button is-light" id="loginButton">
                   Log in
                 </a>
               </div>
@@ -113,5 +113,17 @@ function landingView() {
       <br>
       <br>
     `);
+
+    $('#root').on('click', '#signUpButton', function(event) {
+      $('#root').remove();
+      $('body').append(`<div id="root">`);
+      $('#root').append(signupView());
+    })
+
+    $('#root').on('click', '#loginButton', function(event) {
+      $('#root').remove();
+      $('body').append(`<div id="root">`);
+      $('#root').append(loginView());
+    })
     return landingView;
 }
