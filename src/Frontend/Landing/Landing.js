@@ -9,13 +9,13 @@ function landingView() {
         </div>
         <div id="navbarMain" class="navbar-menu">
           <div class="navbar-start">
-            <a class="navbar-item">
+            <a class="navbar-item" id="postingsButton">
               Postings
             </a>
-            <a class="navbar-item">
+            <a class="navbar-item" id="calendarButton">
               Calendar
             </a>
-            <a class="navbar-item">
+            <a class="navbar-item" id="locationButton">
               Location Recommendations
             </a>
           </div>
@@ -124,6 +124,12 @@ function landingView() {
       $('#root').remove();
       $('body').append(`<div id="root">`);
       $('#root').append(loginView());
+    })
+
+    $('#root').on('click', '#postingsButton', function(event) {
+      $('#root').remove();
+      $('body').append(`<div id="root">`);
+      $('#root').append(postingView());
     })
     return landingView;
 }
