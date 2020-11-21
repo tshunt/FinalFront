@@ -49,7 +49,7 @@ function postingView() {
           </p>
         </div>
         <br>
-        <div>
+        <div id="addNew">
           <div class="tile is-ancestor">
             <div class="tile is-parent">
               <div class="tile is-child box is-flex is-horizontal-center" id="new_posting">
@@ -65,20 +65,158 @@ function postingView() {
   <br>  
   `);
   appendMeetings();
-  currUser = userCheck();
+  userCheck();
 
   $('#root').on('click', '#new_posting', function(event) {
-    let blank = $(`
-    <div class="card" id="commentCard${meeting.id}">
-      <div class="card-content">
-          <button class="button" id="commentButton">Add a comment</button>
-      </div>
-    </div>
-    `);
-    $('#editCard').replaceWith(blank);
+    let newPostingDiv = newPosting();
+    $('#addNew').append(newPostingDiv);
   });
 
   return postingView;
+}
+
+function editPosting(meeting) {
+  let editPostingDiv = $(`
+  <div class="card" id="editPostingDiv">
+    <header class="card-header">
+      <h2 class="card-header-title is-size-3">
+        Edit Meeting
+      </h2>
+    </header>
+    <div class="card-content">
+        <div class="control">
+          <textarea id="className" class="input" type="text">${meeting.className}</textarea>
+        </div>
+        <div class="control">
+          <textarea id="date" class="input" type="text">${meeting.date}</textarea>
+        </div>
+        <div class="control">
+          <textarea id="time" class="input" type="text">${meeting.time}</textarea>
+        </div>
+        <div class="control">
+          <textarea id="location" class="input" type="text">${meeting.location}</textarea>
+        </div>
+        <br>
+        <div class="control">
+          <textarea id="description" class="input" type="text">${meeting.desc}</textarea>
+        </div>
+        <br>
+        <br>
+        <button class="button is-info" id="submitButton">Submit</button>
+        <button class="button" id="cancelButton">Cancel</button>
+    </div>
+  </div>
+`);
+
+$('#root').on('click', '#cancelButton', function(event) {
+  let oldMeeting = meetingView(meeting);
+  $('#editPostingDiv').replaceWith(oldMeeting);
+});
+
+$('#root').one('click', '#submitButton', async function(event) {
+  let className = $('#className.input').val();
+  let date = $('#date.input').val();
+  let time = $('#time.input').val();
+  let location = $('#location.input').val();
+  let description = $('#description.input').val();
+
+  let updated = await axios({
+    method: 'put',
+    url: 'https://stark-depths-67325.herokuapp.com/meeting/'+meeting.id,
+    withCredentials: true,
+    data: {
+      className: className,
+      time: time,
+      date: date,
+      attendees: [],
+      location: location,
+      desc: description,
+      comments: []
+    },
+  });
+
+  meeting.className = className;
+  meeting.time = time;
+  meeting.date = date;
+  meeting.location = location;
+  meeting.desc = description;
+
+  let newDiv = meetingView(meeting);
+
+  $('#editPostingDiv').replaceWith(newDiv);
+
+})
+
+return editPostingDiv;
+
+}
+
+function newPosting() {
+  let newPostingView = $(`
+    <div class="card" id="newPostingDiv">
+      <header class="card-header">
+        <h2 class="card-header-title is-size-3">
+          Create a New Meeting
+        </h2>
+      </header>
+      <div class="card-content">
+          <div class="control">
+            <textarea id="className" class="input" type="text" placeholder="Course Number"></textarea>
+          </div>
+          <div class="control">
+            <textarea id="date" class="input" type="text" placeholder="Meeting Date"></textarea>
+          </div>
+          <div class="control">
+            <textarea id="time" class="input" type="text" placeholder="Meeting Time"></textarea>
+          </div>
+          <div class="control">
+            <textarea id="location" class="input" type="text" placeholder="Meeting Location"></textarea>
+          </div>
+          <br>
+          <div class="control">
+            <textarea id="description" class="input" type="text" placeholder="A short description of the meeting"></textarea>
+          </div>
+          <br>
+          <br>
+          <button class="button is-info" id="submitButton">Submit</button>
+          <button class="button" id="cancelButton">Cancel</button>
+      </div>
+    </div>
+  `);
+
+  $('#root').on('click', '#cancelButton', function(event) {
+    $('#newPostingDiv').remove();
+  });
+
+  $('#root').one('click', '#submitButton', async function(event) {
+    let className = $('#className.input').val();
+    let date = $('#date.input').val();
+    let time = $('#time.input').val();
+    let location = $('#location.input').val();
+    let description = $('#description.input').val();
+
+    let reply = await axios({
+      method: 'post',
+      url: 'https://stark-depths-67325.herokuapp.com/meeting',
+      withCredentials: true,
+      data: {
+        className: className,
+        time: time,
+        date: date,
+        attendees: [],
+        location: location,
+        desc: description,
+        comments: []
+      },
+    });
+    let newDiv = meetingView(reply.data);
+
+    $('#newPostingDiv').replaceWith(newDiv);
+
+  })
+
+return newPostingView;
+
 }
 
 function printAttendees(attendees) {
@@ -141,7 +279,7 @@ function commentView(meeting) {
 
 
 function meetingView(meeting) {
-  let meetingView = $(`
+  let meetingViewDiv = $(`
       <div class="card" id="fullDiv${meeting.id}">
         <header class="card-header">
             <h2 class="card-header-title is-size-3">
@@ -149,7 +287,7 @@ function meetingView(meeting) {
             </h2>
         </header>
         <div class="card-content" id="mainCard${meeting.id}">
-            <p><strong>Author:</strong> ${meeting.owner} </p>
+            <p><strong>Creator:</strong> ${meeting.owner} </p>
             <p><strong>Date and time:</strong> ${meeting.date} ${meeting.time} </>
             <p is-size-5><strong>Location:</strong> ${meeting.location}</p>
             <br>
@@ -167,17 +305,19 @@ function meetingView(meeting) {
 
   //control edit and delete vis
   if(meeting.owner !== currUser) {
-    meetingView.find('#editButton'+meeting.id).hide();
-    meetingView.find('#deleteButton'+meeting.id).hide();
+    meetingViewDiv.find('#editButton'+meeting.id).hide();
+    meetingViewDiv.find('#deleteButton'+meeting.id).hide();
+  } else {
+    meetingViewDiv.find('#joinMtgButton'+meeting.id).hide();
   }
 
 
-  meetingView.append(`
+  meetingViewDiv.append(`
   <h1 class="title is-size-5 has-text-centered">Comments </h1>
   `);
   if (meeting.comments.length !== 0) {
     meeting.comments.forEach(msg => {
-        meetingView.append(`
+        meetingViewDiv.append(`
         <div class="card">
             <div class="card-content">
                 <p>${msg}</p>
@@ -185,7 +325,7 @@ function meetingView(meeting) {
         </div>
       `)
     })
-    meetingView.append(`
+    meetingViewDiv.append(`
     <div class="card" id="commentCard${meeting.id}">
         <div class="card-content">
             <button class="button" id="commentButton${meeting.id}">Add a comment</button>
@@ -193,7 +333,7 @@ function meetingView(meeting) {
     </div>
   `)
   } else {
-    meetingView.append(`
+    meetingViewDiv.append(`
     <div class="card" id="commentCard${meeting.id}">
         <div class="card-content">
             <button class="button" id="commentButton${meeting.id}">Add a comment</button>
@@ -210,6 +350,8 @@ function meetingView(meeting) {
         withCredentials: true,
       });
 
+      meeting.attendees.push(currUser);
+
       let newDiv = meetingView(meeting);
 
       $('#fullDiv'+meeting.id).replaceWith(newDiv);
@@ -219,27 +361,27 @@ function meetingView(meeting) {
     }
   })
 
-  $('#root').one('click', '#submitButton'+meeting.id, async function(event) {
-    try {
+  $('#root').one('click', '#editButton'+meeting.id, async function(event) {
+    let editDiv = editPosting(meeting);
 
-    } catch(error) {
-      
-    }
+    $('#fullDiv'+meeting.id).replaceWith(editDiv);
   })
 
-  $('#root').one('click', '#editButton'+meeting.id, async function(event) {
-    try {
+  $('#root').one('click', '#deleteButton'+meeting.id, async function(event) {
+    let del = await axios({
+      method: 'delete',
+      url: 'https://stark-depths-67325.herokuapp.com/meeting/'+meeting.id,
+      withCredentials: true,
+    });
 
-    } catch(error) {
-    
-    }
+    $('#fullDiv'+meeting.id).remove();
   })
 
   $('#root').on('click', '#commentButton'+meeting.id, async function(event) {
     let comment = commentView(meeting);
     $('#commentCard'+meeting.id).replaceWith(comment);
   })
-  return meetingView;
+  return meetingViewDiv;
 }
 
 async function userCheck() {
@@ -250,7 +392,8 @@ async function userCheck() {
       withCredentials: true,
     });
     $('.buttonsDiv').replaceWith('<p>Welcome back, ' + loggedIn.data.user + '!</p>');
-    return loggedIn.data.user;
+
+    currUser = loggedIn.data.user;
   } catch (error) {
 
   }
