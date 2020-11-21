@@ -1,5 +1,6 @@
+let landingViewDiv;
 function landingView() {
-    let landingView = $(`
+    landingViewDiv = $(`
     <div className="Landing">
       <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
@@ -110,8 +111,7 @@ function landingView() {
       <br>
       <br>
     `);
-    userCheck();
-
+    lUserCheck();
 
     $('#root').on('click', '#signUpButton', function(event) {
       $('#root').remove();
@@ -130,10 +130,10 @@ function landingView() {
       $('body').append(`<div id="root">`);
       $('#root').append(postingView());
     })
-    return landingView;
+    return landingViewDiv;
 }
 
-async function userCheck() {
+async function lUserCheck() {
   try {
     let loggedIn = await axios({
       method: 'get',
@@ -141,7 +141,10 @@ async function userCheck() {
       withCredentials: true,
     });
     $('.buttonsDiv').replaceWith('<p>Welcome back, ' + loggedIn.data.user + '!</p>');
+    landingViewDiv.find('.navbar-start').show();
+    return true;
   } catch (error) {
+    landingViewDiv.find('.navbar-start').hide();
 
   }
 }
