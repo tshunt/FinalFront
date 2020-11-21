@@ -128,10 +128,10 @@ $('#root').one('click', '#submitButton', async function(event) {
       className: className,
       time: time,
       date: date,
-      attendees: [],
+      attendees: meeting.attendees,
       location: location,
       desc: description,
-      comments: []
+      comments: meeting.comments
     },
   });
 
