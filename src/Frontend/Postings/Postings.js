@@ -1,4 +1,5 @@
-let curDiv;
+let currUser;
+let meetingUser;
 function postingView() {
     let postingView = $(`
     <div className="Postings">
@@ -14,16 +15,13 @@ function postingView() {
             Postings
           </a>
           <a class="navbar-item">
-            Calendar
-          </a>
-          <a class="navbar-item">
-            Location Recommendations
+            My Meetings
           </a>
         </div>
 
         <div class="navbar-end">
           <div class="navbar-item">
-            <div class="buttons">
+            <div class="buttonsDiv">
               <a class="button is-info" id="signUpButton">
                 <strong>Sign up</strong>
               </a>
@@ -67,6 +65,7 @@ function postingView() {
   <br>  
   `);
   appendMeetings();
+  currUser = userCheck();
 
   $('#root').on('click', '#new_posting', function(event) {
     let blank = $(`
@@ -160,9 +159,18 @@ function meetingView(meeting) {
             <p is-size-5><strong>Current Attendees:</strong> ${meeting.owner}, ${printAttendees(meeting.attendees)} </p>
             <br>
             <button class="button" id="joinMtgButton${meeting.id}">Join Meeting</button>
+            <button class="button is-info" id="editButton${meeting.id}">Edit</button>
+            <button class="button is-info" id="deleteButton${meeting.id}">Delete</button>
         </div>
       </div>
   `);
+
+  //control edit and delete vis
+  if(meeting.owner !== currUser) {
+    meetingView.find('#editButton'+meeting.id).hide();
+    meetingView.find('#deleteButton'+meeting.id).hide();
+  }
+
 
   meetingView.append(`
   <h1 class="title is-size-5 has-text-centered">Comments </h1>
@@ -211,11 +219,59 @@ function meetingView(meeting) {
     }
   })
 
+  $('#root').one('click', '#joinMtgButton'+meeting.id, async function(event) {
+    try {
+      let c = await axios({
+        method: 'post',
+        url: 'https://stark-depths-67325.herokuapp.com/meeting/join/'+meeting.id,
+        withCredentials: true,
+      });
+
+      let newDiv = meetingView(meeting);
+
+      $('#fullDiv'+meeting.id).replaceWith(newDiv);
+
+    } catch(error) {
+      $('#mainCard'+meeting.id).append(`<p>Already joined meeting!</p>`);
+    }
+  })
+
+  $('#root').one('click', '#joinMtgButton'+meeting.id, async function(event) {
+    try {
+      let c = await axios({
+        method: 'post',
+        url: 'https://stark-depths-67325.herokuapp.com/meeting/join/'+meeting.id,
+        withCredentials: true,
+      });
+
+      let newDiv = meetingView(meeting);
+
+      $('#fullDiv'+meeting.id).replaceWith(newDiv);
+
+    } catch(error) {
+      $('#mainCard'+meeting.id).append(`<p>Already joined meeting!</p>`);
+    }
+  })
+
   $('#root').on('click', '#commentButton'+meeting.id, async function(event) {
     let comment = commentView(meeting);
     $('#commentCard'+meeting.id).replaceWith(comment);
   })
   return meetingView;
+}
+
+async function userCheck() {
+  try {
+    let loggedIn = await axios({
+      method: 'get',
+      url: 'https://stark-depths-67325.herokuapp.com/userInfo',
+      withCredentials: true,
+    });
+    $('.buttonsDiv').replaceWith('<p>Welcome back, ' + loggedIn.data.user + '!</p>');
+    return loggedIn.data.user;
+  } catch (error) {
+
+  }
 }
 
 async function appendMeetings() {

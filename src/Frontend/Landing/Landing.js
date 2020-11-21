@@ -13,16 +13,13 @@ function landingView() {
               Postings
             </a>
             <a class="navbar-item" id="calendarButton">
-              Calendar
-            </a>
-            <a class="navbar-item" id="locationButton">
-              Location Recommendations
+              My Meetings
             </a>
           </div>
 
           <div class="navbar-end">
             <div class="navbar-item">
-              <div class="buttons">
+              <div class="buttonsDiv">
                 <a class="button is-info" id="signUpButton">
                   <strong>Sign up</strong>
                 </a>
@@ -113,6 +110,8 @@ function landingView() {
       <br>
       <br>
     `);
+    userCheck();
+
 
     $('#root').on('click', '#signUpButton', function(event) {
       $('#root').remove();
@@ -132,4 +131,17 @@ function landingView() {
       $('#root').append(postingView());
     })
     return landingView;
+}
+
+async function userCheck() {
+  try {
+    let loggedIn = await axios({
+      method: 'get',
+      url: 'https://stark-depths-67325.herokuapp.com/userInfo',
+      withCredentials: true,
+    });
+    $('.buttonsDiv').replaceWith('<p>Welcome back, ' + loggedIn.data.user + '!</p>');
+  } catch (error) {
+
+  }
 }
