@@ -156,7 +156,7 @@ function meetingView(meeting) {
             <p is-size-5><strong>Description:</strong> ${meeting.desc}</p>
             <br>
             <br>
-            <p is-size-5><strong>Current Attendees:</strong> ${meeting.owner}, ${printAttendees(meeting.attendees)} </p>
+            <p is-size-5><strong>Current Attendees:</strong> ${printAttendees(meeting.attendees)} </p>
             <br>
             <button class="button" id="joinMtgButton${meeting.id}">Join Meeting</button>
             <button class="button is-info" id="editButton${meeting.id}">Edit</button>
@@ -219,37 +219,19 @@ function meetingView(meeting) {
     }
   })
 
-  $('#root').one('click', '#joinMtgButton'+meeting.id, async function(event) {
+  $('#root').one('click', '#submitButton'+meeting.id, async function(event) {
     try {
-      let c = await axios({
-        method: 'post',
-        url: 'https://stark-depths-67325.herokuapp.com/meeting/join/'+meeting.id,
-        withCredentials: true,
-      });
-
-      let newDiv = meetingView(meeting);
-
-      $('#fullDiv'+meeting.id).replaceWith(newDiv);
 
     } catch(error) {
-      $('#mainCard'+meeting.id).append(`<p>Already joined meeting!</p>`);
+      
     }
   })
 
-  $('#root').one('click', '#joinMtgButton'+meeting.id, async function(event) {
+  $('#root').one('click', '#editButton'+meeting.id, async function(event) {
     try {
-      let c = await axios({
-        method: 'post',
-        url: 'https://stark-depths-67325.herokuapp.com/meeting/join/'+meeting.id,
-        withCredentials: true,
-      });
-
-      let newDiv = meetingView(meeting);
-
-      $('#fullDiv'+meeting.id).replaceWith(newDiv);
 
     } catch(error) {
-      $('#mainCard'+meeting.id).append(`<p>Already joined meeting!</p>`);
+    
     }
   })
 
