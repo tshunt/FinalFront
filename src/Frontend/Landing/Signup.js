@@ -113,6 +113,16 @@ $('#root').on('click', '#signupButton', async function(event) {
     let ye = $('#year.input').val();
     let pr = $('#pros.input').val();
 
+    console.log(us);
+    console.log(pa);
+    console.log(em);
+    console.log(ho);
+    console.log(ma);
+    console.log(ye);
+    console.log(pr);
+
+    alert("here");
+
     let res = await axios({
       method: 'post',
       url: 'https://stark-depths-67325.herokuapp.com/signup',
