@@ -89,6 +89,7 @@ function postingView() {
           console.log($(`#name${id}`).text());
           if ($(`#name${id}`).text() != holder){
             hidden.push(id);
+            console.log(hidden);
             $(`fullDiv${id}`).hide();
           }
         })
