@@ -65,7 +65,7 @@ function postingView() {
   <br>  
   `);
   appendMeetings();
-  userCheck();
+  pUserCheck();
 
   $('#root').on('click', '#meetingsButton', function(event) {
     $('#root').remove();
@@ -390,13 +390,14 @@ function meetingView(meeting) {
   return meetingViewDiv;
 }
 
-async function userCheck() {
+async function pUserCheck() {
   try {
     let loggedIn = await axios({
       method: 'get',
       url: 'https://stark-depths-67325.herokuapp.com/userInfo',
       withCredentials: true,
     });
+    currUser = loggedIn.data.user;
     $('.buttonsDiv').replaceWith('<p style="padding-right: 8px">Welcome back, ' + loggedIn.data.user + '!  </p> <a class="button is-info" id="logout"><strong>Logout</strong></a>');
 
     $('#root').on('click', '#logout', async function(event) {
@@ -409,10 +410,8 @@ async function userCheck() {
       $('body').append(`<div id="root">`);
       $('#root').append(landingView());
     });
-
-    currUser = loggedIn.data.user;
   } catch (error) {
-
+    console.log("User get error");
   }
 }
 
