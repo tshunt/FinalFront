@@ -14,7 +14,7 @@ function postingView() {
           <a class="navbar-item">
             Postings
           </a>
-          <a class="navbar-item">
+          <a class="navbar-item" id="meetingsButton">
             My Meetings
           </a>
         </div>
@@ -66,6 +66,12 @@ function postingView() {
   `);
   appendMeetings();
   userCheck();
+
+  $('#root').on('click', '#meetingsButton', function(event) {
+    $('#root').remove();
+    $('body').append(`<div id="root">`);
+    $('#root').append(allMeetingsView());
+  })
 
   $('#root').on('click', '#new_posting', function(event) {
     let newPostingDiv = newPosting();

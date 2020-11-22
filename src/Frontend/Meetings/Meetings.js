@@ -10,7 +10,7 @@ function allMeetingsView() {
       </div>
       <div id="navbarMain" class="navbar-menu">
         <div class="navbar-start">
-          <a class="navbar-item">
+          <a class="navbar-item" id="postingsButton">
             Postings
           </a>
           <a class="navbar-item">
@@ -53,6 +53,16 @@ function allMeetingsView() {
   <br>
   <br>  
   `);
+
+  //listener for postings tab
+  $('#root').on('click', '#postingsButton', function(event) {
+    $('#root').remove();
+    $('body').append(`<div id="root">`);
+    $('#root').append(postingView());
+  })
+
+    //sets header based on login
+    userCheck();
 
     //retrieve meetings data
     getMeetingsData();
@@ -270,4 +280,33 @@ function fetchWeatherData(str_date, id) {
         });
 
         return final_str;
+}
+
+
+async function userCheck() {
+  try {
+    let loggedIn = await axios({
+      method: 'get',
+      url: 'https://stark-depths-67325.herokuapp.com/userInfo',
+      withCredentials: true,
+    });
+    $('.buttonsDiv').replaceWith('<p style="padding-right: 8px">Welcome back, ' + loggedIn.data.user + '!  </p> <a class="button is-info" id="logout"><strong>Logout</strong></a>');
+
+    $('#root').on('click', '#logout', async function(event) {
+      let logout = await axios({
+        method: 'get',
+        url: 'https://stark-depths-67325.herokuapp.com/logout',
+        withCredentials: true,
+      });
+      $('#root').remove();
+      $('body').append(`<div id="root">`);
+      $('#root').append(landingView());
+    });
+
+    landingViewDiv.find('.navbar-start').show();
+    user = loggedIn.data.user;
+    return true;
+  } catch (error) {
+
+  }
 }
