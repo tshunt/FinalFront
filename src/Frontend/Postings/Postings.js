@@ -85,9 +85,8 @@ function postingView() {
       let holder = $('#AutoSearch').val();
 
       if(holder.length == 8){
-      
+        console.log(ids);
         ids.forEach((id) =>{
-          alert($(`#name${id}`).val());
           if ($(`#name${id}`).val() != holder){
             hidden.push(id);
             $(`fullDiv${id}`).hide();
