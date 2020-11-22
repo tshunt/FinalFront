@@ -413,7 +413,7 @@ async function userCheck() {
 
     currUser = loggedIn.data.user;
   } catch (error) {
-
+    console.log("User get error");
   }
 }
 
