@@ -67,10 +67,12 @@ function signupView() {
               <div class="field">
                 <label class="label">Housing Status</label>
                 <div class="control">
-                    <select id="house">
-                      <option>On Campus</option>
-                      <option>Off Campus</option>
-                    </select>
+                  <div class="select">
+                      <select id="house">
+                        <option>On Campus</option>
+                        <option>Off Campus</option>
+                      </select>
+                  </div>
                 </div>
               </div>
               
