@@ -73,7 +73,6 @@ $('#root').on('click', '#login', async function(event) {
     $('#root').append(postingView());
     
   } catch {
-    alert("error");
     $('#form').append(`<p>Error: Incorrect or Missing Credentials.</p>`);
   }
 });
