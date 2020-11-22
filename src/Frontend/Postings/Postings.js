@@ -86,7 +86,8 @@ function postingView() {
 
       if(holder.length == 8){
         ids.forEach((id) =>{
-          console.log($(`#name${id}`).text());
+          let compare = $(`#name${id}`).text().toString();+
+          console.log(compare);
           if ($(`#name${id}`).text() != holder){
             hidden.push(id);
             console.log(hidden);
@@ -316,9 +317,7 @@ function meetingView(meeting) {
   let meetingViewDiv = $(`
       <div class="card" id="fullDiv${meeting.id}">
         <header class="card-header">
-            <h2 class="card-header-title is-size-3" id="name${meeting.id}">
-                ${meeting.className}
-            </h2>
+            <h2 class="card-header-title is-size-3" id="name${meeting.id}">${meeting.className}</h2>
         </header>
         <div class="card-content" id="mainCard${meeting.id}">
             <p><strong>Creator:</strong> ${meeting.owner} </p>
