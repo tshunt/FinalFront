@@ -1,5 +1,6 @@
 let currUser;
 let meetingUser;
+let meetingList;
 function postingView() {
     let postingView = $(`
     <div className="Postings">
@@ -79,7 +80,10 @@ function postingView() {
   });
 
   $('#root').on('input', '#AutoSearch', function(event) {
-      alert($('#AutoSearch').val());
+      let holder = $('#AutoSearch').val(),
+      if(holder.length == 8){
+        alert(`Reducing to only ${holder}`);
+      }
   });
 
 
