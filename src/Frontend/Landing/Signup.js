@@ -13,7 +13,7 @@ function signupView() {
               <div class="field">
                 <label class="label">Username</label>
                 <p class="control has-icons-left has-icons-right">
-                  <input class="input" type="text" placeholder="username" id="user">
+                  <input class="input" type="text" placeholder="Username" id="user">
                   <span class="icon is-small is-left">
                     <i class="fas fa-user"></i>
                   </span>
@@ -43,7 +43,7 @@ function signupView() {
               <div class="field">
                 <label class="label">Major</label>
                 <p class="control has-icons-left">
-                  <input class="input" type="password" placeholder="Computer Science" id="major">
+                  <input class="input" type="text" placeholder="Computer Science" id="major">
                   <span class="icon is-small is-left">
                     <i class="fas fa-book"></i>
                   </span>
