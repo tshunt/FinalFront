@@ -86,11 +86,10 @@ function postingView() {
 
       if(holder.length == 8){
         ids.forEach((id) =>{
-          let compare = $(`#name${id}`).text().toString();+
-          console.log(compare);
+          let compare = $(`#name${id}`).text().toString();
           if ($(`#name${id}`).text() != holder){
             hidden.push(id);
-            console.log(hidden);
+            console.log($(`fullDiv${id}`));
             $(`fullDiv${id}`).hide();
           }
         })
