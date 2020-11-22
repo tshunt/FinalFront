@@ -12,7 +12,7 @@ function loginView() {
               </div>
               
               <div class="field">
-                <label class="label">Email</label>
+                <label class="label">Username</label>
                 <p class="control has-icons-left has-icons-right">
                   <input class="input" type="text" placeholder="Username" id="user">
                   <span class="icon is-small is-left">
