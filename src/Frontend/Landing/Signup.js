@@ -103,6 +103,8 @@ $('#root').on('click', '#cancelButton', function(event) {
 
 $('#root').on('click', '#signupButton', async function(event) {
   try{
+    event.preventDefault();
+  
     let us = $('#user.input').val();
     let pa = $('#pass.input').val();
     let em = $('#email.input').val();
