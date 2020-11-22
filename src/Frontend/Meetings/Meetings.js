@@ -38,7 +38,7 @@ function allMeetingsView() {
     <div class="container">
 
         <h1 class="title is-size-1 has-text-white has-text-centered">
-            Scheduled Meetings
+            My Meetings
         </h1>
        
         <br>
@@ -75,7 +75,7 @@ function allMeetingsView() {
 async function getMeetingsData() {
     let meetings = await axios({
         method: 'get',
-        url: 'https://stark-depths-67325.herokuapp.com/meeting',
+        url: 'https://stark-depths-67325.herokuapp.com/meeting/user',
         withCredentials: true,
     });
 

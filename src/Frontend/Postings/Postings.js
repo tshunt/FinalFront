@@ -397,7 +397,11 @@ async function pUserCheck() {
       url: 'https://stark-depths-67325.herokuapp.com/userInfo',
       withCredentials: true,
     });
+<<<<<<< HEAD
     currUser = loggedIn.data.user;
+=======
+    console.log(loggedIn);
+>>>>>>> aa43db97fac6e06f36799f7c0b559ec5bde160bf
     $('.buttonsDiv').replaceWith('<p style="padding-right: 8px">Welcome back, ' + loggedIn.data.user + '!  </p> <a class="button is-info" id="logout"><strong>Logout</strong></a>');
 
     $('#root').on('click', '#logout', async function(event) {
@@ -411,7 +415,7 @@ async function pUserCheck() {
       $('#root').append(landingView());
     });
   } catch (error) {
-
+    console.log("User get error");
   }
 }
 
