@@ -113,7 +113,7 @@ $('#root').on('click', '#signupButton', async function(event) {
     let ho = $('#house option:selected').text();
     let ma = $('#major.input').val();
     let ye = $('#year option:selected').text();
-    let pr = $('#pros').value;
+    let pr = $('#pros').val();
 
     console.log(us);
     console.log(pa);
@@ -139,11 +139,21 @@ $('#root').on('click', '#signupButton', async function(event) {
         pronouns: pr,
       }
     });
+
+    let res2 = await axios({
+      method: 'post',
+      url: 'https://stark-depths-67325.herokuapp.com/login',
+      withCredentials: true,
+      data: {
+        user: us,
+        password: pa,
+      }
+    });
     */
 
     $('#root').remove();
     $('body').append(`<div id="root">`);
-    $('#root').append(landingView());
+    $('#root').append(postingView());
   } catch {
     $('#form').append(`<p>Failed Sign Up. Ensure all fields are corrent and enter new username if problem persists.</p>`);
   }
