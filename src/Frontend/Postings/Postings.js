@@ -90,7 +90,7 @@ function postingView() {
           if ($(`#name${id}`).text() != holder){
             hidden.push(id);
             console.log($(`fullDiv${id}`));
-            $(`fullDiv${id}`).hide();
+            $(`fullDiv${id}`).toggle();
           }
         })
       } else {
