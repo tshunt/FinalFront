@@ -80,7 +80,7 @@ function postingView() {
   });
 
   $('#root').on('input', '#AutoSearch', function(event) {
-      let holder = $('#AutoSearch').val(),
+      let holder = $('#AutoSearch').val();
       if(holder.length == 8){
         alert(`Reducing to only ${holder}`);
       }
