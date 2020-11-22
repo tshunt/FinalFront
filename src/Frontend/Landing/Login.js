@@ -16,7 +16,7 @@ function loginView() {
                 <p class="control has-icons-left has-icons-right">
                   <input class="input" type="text" placeholder="Username" id="user">
                   <span class="icon is-small is-left">
-                    <i class="fas fa-user-circle-o"></i>
+                    <i class="fas fa-user-circle"></i>
                   </span>
                 </p>
               </div>
