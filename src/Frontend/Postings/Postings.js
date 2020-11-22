@@ -1,6 +1,8 @@
 let currUser;
 let meetingUser;
 let meetingList;
+let hidden = [];
+let ids;
 function postingView() {
     let postingView = $(`
     <div className="Postings">
@@ -82,7 +84,17 @@ function postingView() {
   $('#root').on('input', '#AutoSearch', function(event) {
       let holder = $('#AutoSearch').val();
       if(holder.length == 8){
-        alert(`Reducing to only ${holder}`);
+        ids.forEach((id) =>{
+          if ($(`#name${id}`).val() != holder){
+            hidden.push(id);
+            $(`fullDiv${id}`).hide();
+          }
+        })
+      } else {
+        // hidden.forEach((id) => {
+        //   $(`fullDiv${id}`).show();
+
+        // })
       }
   });
 
@@ -301,7 +313,7 @@ function meetingView(meeting) {
   let meetingViewDiv = $(`
       <div class="card" id="fullDiv${meeting.id}">
         <header class="card-header">
-            <h2 class="card-header-title is-size-3">
+            <h2 class="card-header-title is-size-3" id="name${meeting.id}">
                 ${meeting.className}
             </h2>
         </header>
@@ -436,6 +448,7 @@ async function appendMeetings() {
     });
 
     meetings = meetings.data;
+    ids = meeting.data;
 
     meetings.forEach(async (mtg) => {
         let meeting = await axios({
