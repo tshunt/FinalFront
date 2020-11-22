@@ -13,7 +13,7 @@ function landingView() {
             <a class="navbar-item" id="postingsButton">
               Postings
             </a>
-            <a class="navbar-item" id="calendarButton">
+            <a class="navbar-item" id="meetingsButton">
               My Meetings
             </a>
           </div>
