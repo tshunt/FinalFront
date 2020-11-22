@@ -14,7 +14,7 @@ export const loadPage = async function() {
     //     }
     // })
 
-    let signin = await axios({
+    /*let signin = await axios({
         method:'post',
         url: `https://stark-depths-67325.herokuapp.com/login`,
         withCredentials: true,
@@ -22,7 +22,7 @@ export const loadPage = async function() {
             user: "rachel",
             password: "password",
         }
-    })
+    })*/
 
 
     $root.append(landingView());

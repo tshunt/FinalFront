@@ -164,10 +164,10 @@ function newPosting() {
             <textarea id="className" class="input" type="text" placeholder="Course Number"></textarea>
           </div>
           <div class="control">
-            <textarea id="date" class="input" type="text" placeholder="Meeting Date"></textarea>
+            <textarea id="date" class="input" type="text" placeholder="Meeting Date (MM/DD/YYYY)"></textarea>
           </div>
           <div class="control">
-            <textarea id="time" class="input" type="text" placeholder="Meeting Time"></textarea>
+            <textarea id="time" class="input" type="text" placeholder="Meeting Time (HH:MM AM/PM)"></textarea>
           </div>
           <div class="control">
             <textarea id="location" class="input" type="text" placeholder="Meeting Location"></textarea>
