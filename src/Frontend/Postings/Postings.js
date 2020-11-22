@@ -78,6 +78,11 @@ function postingView() {
     $('#addNew').append(newPostingDiv);
   });
 
+  $('#root').on('keypress', '#AutoSearch', function(event) {
+      alert($('#AutoSearch').val());
+  });
+
+
     let test = ["test","test2","test3"];
 
     $('#AutoSearch').autocomplete(test);
