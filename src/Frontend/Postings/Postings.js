@@ -42,7 +42,7 @@ function postingView() {
         </h1>
         <div>
           <p class="control has-icons-left">
-            <input class="input" id="tbCountries" type="text" placeholder="Search Classes">
+            <input class="input" id="AutoSearch" type="text" placeholder="Search Classes">
             <span class="icon is-left">
               <i class="fas fa-search" aria-hidden="true"></i>
             </span>
@@ -77,30 +77,13 @@ function postingView() {
     let newPostingDiv = newPosting();
     $('#addNew').append(newPostingDiv);
   });
+  
+    let test = ["test","test2","test3"];
 
-  $(document).ready(function() {
-    BindControls();
-});
-
-function BindControls() {
-    var Countries = ['ARGENTINA', 
-        'AUSTRALIA', 
-        'BRAZIL', 
-        'BELARUS', 
-        'BHUTAN',
-        'CHILE', 
-        'CAMBODIA', 
-        'CANADA', 
-        'DENMARK', 
-        'DOMINICA',
-        'INDIA'];
-
-    $('#tbCountries').autocomplete({
-        source: Countries,
+    $('#AutoSearch').autocomplete({
+        source: test,
         minLength: 0,
         scroll: true
-    }).focus(function() {
-        $(this).autocomplete("search", "");
     });
 }
 
