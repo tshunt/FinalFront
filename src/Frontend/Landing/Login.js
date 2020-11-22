@@ -71,6 +71,7 @@ $('#root').on('click', '#login', async function(event) {
       }
     });
 
+    alert("here2");
     $('#root').remove();
     $('body').append(`<div id="root">`);
     $('#root').append(postingView());
