@@ -310,8 +310,6 @@ function meetingView(meeting) {
   `);
 
   //control edit and delete vis
-  console.log(meeting.owner);
-  console.log(currUser);
   if(meeting.owner !== currUser) {
     meetingViewDiv.find('#editButton'+meeting.id).hide();
     meetingViewDiv.find('#deleteButton'+meeting.id).hide();
@@ -399,6 +397,7 @@ async function userCheck() {
       url: 'https://stark-depths-67325.herokuapp.com/userInfo',
       withCredentials: true,
     });
+    console.log(loggedIn);
     $('.buttonsDiv').replaceWith('<p style="padding-right: 8px">Welcome back, ' + loggedIn.data.user + '!  </p> <a class="button is-info" id="logout"><strong>Logout</strong></a>');
 
     $('#root').on('click', '#logout', async function(event) {
