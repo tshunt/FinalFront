@@ -101,7 +101,7 @@ $('#root').on('click', '#cancelButton', function(event) {
   $('#root').append(landingView());
 });
 
-$('#root').on('click', '#signupButton', function(event) {
+$('#root').on('click', '#signupButton', async function(event) {
   try{
     let us = $('#user.input').val();
     let pa = $('#pass.input').val();
