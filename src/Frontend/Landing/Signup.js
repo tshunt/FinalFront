@@ -110,10 +110,10 @@ $('#root').on('click', '#signupButton', async function(event) {
     let us = $('#user.input').val();
     let pa = $('#pass.input').val();
     let em = $('#email.input').val();
-    let ho = $('#house.value').val();
+    let ho = $('#house').value;
     let ma = $('#major.input').val();
-    let ye = $('#year.value').val();
-    let pr = $('#pros.value').val();
+    let ye = $('#year').value;
+    let pr = $('#pros').value;
 
     console.log(us);
     console.log(pa);
