@@ -82,8 +82,6 @@ function postingView() {
 
     $('#AutoSearch').autocomplete({
         source: test,
-        minLength: 0,
-        scroll: true
     });
 
   return postingView;
