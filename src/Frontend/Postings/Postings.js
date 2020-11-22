@@ -40,9 +40,9 @@ function postingView() {
         <h1 class="title is-size-1 has-text-white has-text-centered">
             Postings
         </h1>
-        <div>
+        <div class="ui-widget">
           <p class="control has-icons-left">
-            <input class="input" id="AutoSearch" type="text" placeholder="Search Classes">
+            <input class="input" id="searchClasses" type="text" placeholder="Search Classes">
             <span class="icon is-left">
               <i class="fas fa-search" aria-hidden="true"></i>
             </span>
@@ -78,14 +78,27 @@ function postingView() {
     $('#addNew').append(newPostingDiv);
   });
 
-  $('#root').on('input', '#AutoSearch', function(event) {
-      alert($('#AutoSearch').val());
+  $(document).ready(function() {
+    BindControls();
+});
+
+async function BindControls() {
+  let call = await axios({
+    method: 'get',
+    url: 'https://stark-depths-67325.herokuapp.com/meetingNames',
+    withCredentials: true,
   });
 
-
-    let test = ["test","test2","test3"];
-
-    $('#AutoSearch').autocomplete(test);
+  let classes = call.data;
+    $('#searchClasses').autocomplete({
+        source: classes,
+        delay: 200,
+        minLength: 0,
+        scroll: true
+    }).focus(function() {
+        $(this).autocomplete("search", "");
+    });
+}
 
   return postingView;
 }
