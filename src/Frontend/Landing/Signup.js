@@ -122,7 +122,7 @@ $('#root').on('click', '#signupButton', async function(event) {
     console.log(pr);
 
     alert("here");
-
+    /*
     let res = await axios({
       method: 'post',
       url: 'https://stark-depths-67325.herokuapp.com/signup',
@@ -137,6 +137,7 @@ $('#root').on('click', '#signupButton', async function(event) {
         pronouns: pr,
       }
     });
+    */
 
     $('#root').remove();
     $('body').append(`<div id="root">`);
