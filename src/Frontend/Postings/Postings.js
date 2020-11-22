@@ -78,7 +78,7 @@ function postingView() {
     $('#addNew').append(newPostingDiv);
   });
 
-  $('#root').on('keypress', '#AutoSearch', function(event) {
+  $('#AutoSearch').on('input', function(event) {
       alert($('#AutoSearch').val());
   });
 
