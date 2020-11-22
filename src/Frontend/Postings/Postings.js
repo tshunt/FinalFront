@@ -86,8 +86,8 @@ function postingView() {
 
       if(holder.length == 8){
         ids.forEach((id) =>{
-          console.log($(`#name${id}`));
-          if ($(`#name${id}`).val() != holder){
+          console.log($(`#name${id}`).text());
+          if ($(`#name${id}`).text() != holder){
             hidden.push(id);
             $(`fullDiv${id}`).hide();
           }
