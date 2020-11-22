@@ -140,7 +140,7 @@ async function lUserCheck() {
       url: 'https://stark-depths-67325.herokuapp.com/userInfo',
       withCredentials: true,
     });
-    $('.buttonsDiv').replaceWith('<p>Welcome back, ' + loggedIn.data.user + '!</p>');
+    $('.buttonsDiv').replaceWith('<p>Welcome back, ' + loggedIn.data.user + '!</p> <a class="button is-info" id="logout"><strong>Logout</strong></a>');
     landingViewDiv.find('.navbar-start').show();
     return true;
   } catch (error) {
