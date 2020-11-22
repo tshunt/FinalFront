@@ -54,6 +54,7 @@ $('#root').on('click', '#cancel', function(event) {
 
 $('#root').on('click', '#login', async function(event) {
   try{
+    event.preventDefault();
     alert("here");
     let user = $('#user.input').val();
     let pass = $('#pass.input').val();
@@ -77,6 +78,7 @@ $('#root').on('click', '#login', async function(event) {
     $('#root').append(postingView());
     
   } catch {
+    alert("error");
     $('#form').append(`<p>Error: Incorrect or Missing Credentials.</p>`);
   }
 });
