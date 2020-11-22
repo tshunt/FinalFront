@@ -130,6 +130,13 @@ function landingView() {
       $('body').append(`<div id="root">`);
       $('#root').append(postingView());
     })
+
+    $('#root').on('click', '#meetingsButton', function(event) {
+      $('#root').remove();
+      $('body').append(`<div id="root">`);
+      $('#root').append(allMeetingsView());
+    })
+    
     return landingViewDiv;
 }
 
