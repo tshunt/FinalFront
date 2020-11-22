@@ -1,5 +1,8 @@
 let currUser;
 let meetingUser;
+let meetingList;
+let hidden = [];
+let ids;
 function postingView() {
     let postingView = $(`
     <div className="Postings">
@@ -78,8 +81,24 @@ function postingView() {
     $('#addNew').append(newPostingDiv);
   });
 
-  $('#root').on('keypress', '#AutoSearch', function(event) {
-      alert($('#AutoSearch').val());
+  $('#root').on('input', '#AutoSearch', function(event) {
+      let holder = $('#AutoSearch').val();
+
+      if(holder.length == 8){
+        ids.forEach((id) =>{
+          let compare = $(`#name${id}`).text().toString();
+          if ($(`#name${id}`).text() != holder){
+            hidden.push(id);
+            console.log($(`fullDiv${id}`));
+            $(`fullDiv${id}`).hide();
+          }
+        })
+      } else {
+        // hidden.forEach((id) => {
+        //   $(`fullDiv${id}`).show();
+
+        // })
+      }
   });
 
 
@@ -318,9 +337,7 @@ function meetingView(meeting) {
   let meetingViewDiv = $(`
       <div class="card" id="fullDiv${meeting.id}">
         <header class="card-header">
-            <h2 class="card-header-title is-size-3">
-                ${meeting.className}
-            </h2>
+            <h2 class="card-header-title is-size-3" id="name${meeting.id}">${meeting.className}</h2>
         </header>
         <div class="card-content" id="mainCard${meeting.id}">
             <p><strong>Creator:</strong> ${meeting.owner} </p>
@@ -451,7 +468,7 @@ async function appendMeetings() {
         url: 'https://stark-depths-67325.herokuapp.com/meeting',
         withCredentials: true,
     });
-
+    ids = meetings.data;
     meetings = meetings.data;
 
     meetings.forEach(async (mtg) => {
