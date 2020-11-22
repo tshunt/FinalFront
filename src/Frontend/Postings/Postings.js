@@ -446,9 +446,8 @@ async function appendMeetings() {
         url: 'https://stark-depths-67325.herokuapp.com/meeting',
         withCredentials: true,
     });
-
+    ids = meetings.data;
     meetings = meetings.data;
-    ids = meeting.data;
 
     meetings.forEach(async (mtg) => {
         let meeting = await axios({
