@@ -1,3 +1,4 @@
+let e = 0;
 function loginView() {
     let loginView = $(`
     <div className="Login">
@@ -73,7 +74,10 @@ $('#root').on('click', '#login', async function(event) {
     $('#root').append(postingView());
     
   } catch {
-    $('#form').append(`<p>Error: Incorrect or Missing Credentials.</p>`);
+    if(e == 0){
+      $('#form').append(`<p>Error: Incorrect or Missing Credentials.</p>`);
+      e++;
+    }
   }
 });
 

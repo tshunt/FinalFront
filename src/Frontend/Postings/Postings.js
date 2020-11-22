@@ -310,6 +310,8 @@ function meetingView(meeting) {
   `);
 
   //control edit and delete vis
+  console.log(meeting.owner);
+  console.log(currUser);
   if(meeting.owner !== currUser) {
     meetingViewDiv.find('#editButton'+meeting.id).hide();
     meetingViewDiv.find('#deleteButton'+meeting.id).hide();
