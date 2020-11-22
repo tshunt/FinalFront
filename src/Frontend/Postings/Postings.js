@@ -40,9 +40,9 @@ function postingView() {
         <h1 class="title is-size-1 has-text-white has-text-centered">
             Postings
         </h1>
-        <div class = "ui-widget">
+        <div>
           <p class="control has-icons-left">
-            <input class="input" id = "automplete-1" type="text" placeholder="Search Classes">
+            <input class="input" id="tbCountries" type="text" placeholder="Search Classes">
             <span class="icon is-left">
               <i class="fas fa-search" aria-hidden="true"></i>
             </span>
@@ -78,17 +78,31 @@ function postingView() {
     $('#addNew').append(newPostingDiv);
   });
 
-  $(function() {
-    var availableTutorials  =  [
-       "ActionScript",
-       "Bootstrap",
-       "C",
-       "C++",
-    ];
-    $( "#automplete-1" ).autocomplete({
-       source: availableTutorials
+  $(document).ready(function() {
+    BindControls();
+});
+
+function BindControls() {
+    var Countries = ['ARGENTINA', 
+        'AUSTRALIA', 
+        'BRAZIL', 
+        'BELARUS', 
+        'BHUTAN',
+        'CHILE', 
+        'CAMBODIA', 
+        'CANADA', 
+        'DENMARK', 
+        'DOMINICA',
+        'INDIA'];
+
+    $('#tbCountries').autocomplete({
+        source: Countries,
+        minLength: 0,
+        scroll: true
+    }).focus(function() {
+        $(this).autocomplete("search", "");
     });
-  });
+}
 
   return postingView;
 }
