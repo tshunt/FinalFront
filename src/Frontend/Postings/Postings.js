@@ -77,7 +77,7 @@ function postingView() {
     let newPostingDiv = newPosting();
     $('#addNew').append(newPostingDiv);
   });
-  
+
     let test = ["test","test2","test3"];
 
     $('#AutoSearch').autocomplete({
@@ -85,7 +85,6 @@ function postingView() {
         minLength: 0,
         scroll: true
     });
-}
 
   return postingView;
 }
