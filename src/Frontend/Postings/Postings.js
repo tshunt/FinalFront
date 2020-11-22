@@ -80,9 +80,7 @@ function postingView() {
 
     let test = ["test","test2","test3"];
 
-    $('#AutoSearch').autocomplete({
-        source: test,
-    });
+    $('#AutoSearch').autocomplete(test);
 
   return postingView;
 }
