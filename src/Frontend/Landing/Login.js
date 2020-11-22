@@ -16,7 +16,7 @@ function loginView() {
                 <p class="control has-icons-left has-icons-right">
                   <input class="input" type="text" placeholder="Username" id="user">
                   <span class="icon is-small is-left">
-                    <i class="fas fa-envelope"></i>
+                    <i class="fas fa-user-circle-o"></i>
                   </span>
                 </p>
               </div>
@@ -54,8 +54,12 @@ $('#root').on('click', '#cancel', function(event) {
 
 $('#root').on('click', '#login', async function(event) {
   try{
+    alert("here");
     let user = $('#user.input').val();
     let pass = $('#pass.input').val();
+
+    console.log(user);
+    console.log(pass);
 
     let res = await axios({
       method: 'post',
