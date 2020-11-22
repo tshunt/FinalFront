@@ -391,7 +391,7 @@ async function userCheck() {
       url: 'https://stark-depths-67325.herokuapp.com/userInfo',
       withCredentials: true,
     });
-    $('.buttonsDiv').replaceWith('<p padding = "8px">Welcome back, ' + loggedIn.data.user + '!  </p> <a class="button is-info" id="logout"><strong>Logout</strong></a>');
+    $('.buttonsDiv').replaceWith('<p style="padding-right: 8px">Welcome back, ' + loggedIn.data.user + '!  </p> <a class="button is-info" id="logout"><strong>Logout</strong></a>');
 
     $('#root').on('click', '#logout', async function(event) {
       let logout = await axios({
