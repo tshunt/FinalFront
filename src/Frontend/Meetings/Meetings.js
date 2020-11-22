@@ -75,7 +75,7 @@ function allMeetingsView() {
 async function getMeetingsData() {
     let meetings = await axios({
         method: 'get',
-        url: 'https://stark-depths-67325.herokuapp.com/meeting',
+        url: 'https://stark-depths-67325.herokuapp.com/meeting/user',
         withCredentials: true,
     });
 
