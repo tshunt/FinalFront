@@ -46,7 +46,7 @@ function postingView() {
           <p class="control has-icons-left">
             <input class="input" id="searchClasses" type="text" placeholder="Search Classes">
             <span class="icon is-left">
-              <i class="fas fa-search" aria-hidden="true"></i>
+              <i class="fas fa-search" aria-hidden="true" id="search"></i>
             </span>
           </p>
         </div>
@@ -100,8 +100,8 @@ function postingView() {
     }
 });
 
-$('#root').on('click', '.ui-widget', function(event) {
-  let holder = $('#searchClasses').val();
+$('#root').on('click', '#search', function(event) {
+  let holder = $('#search').val();
 
   if(holder.length == 8){
     ids.forEach((id) =>{
