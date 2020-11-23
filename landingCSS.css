@@ -1,3 +1,7 @@
 body {
     background-color: #86c2eb;
 }
+
+.is-horizontal-center {
+    justify-content: center;
+}

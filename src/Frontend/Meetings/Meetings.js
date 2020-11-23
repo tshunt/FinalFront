@@ -5,7 +5,7 @@ function allMeetingsView() {
     <nav class="navbar" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <a class="navbar-item" href="">
-          <img src="https://pixy.org/src/70/707393.gif" alt="UNC Logo" width="70" height="70" />
+          <img src="https://pixy.org/src/70/707393.gif" alt="UNC Logo" />
         </a>
       </div>
       <div id="navbarMain" class="navbar-menu">

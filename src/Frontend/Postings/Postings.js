@@ -8,7 +8,7 @@ function postingView() {
     <nav class="navbar" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <a class="navbar-item" href="">
-          <img src="https://pixy.org/src/70/707393.gif" alt="UNC Logo" width="70" height="70" />
+          <img src="https://pixy.org/src/70/707393.gif" alt="UNC Logo"/>
         </a>
       </div>
       <div id="navbarMain" class="navbar-menu">
@@ -42,33 +42,35 @@ function postingView() {
         <h1 class="title is-size-1 has-text-white has-text-centered">
             Postings
         </h1>
-        <div class="ui-widget">
-          <p class="control has-icons-left">
+        <div class="field is-grouped ui-widget">
+          <div class="control has-icons-left is-expanded">
             <input class="input" id="searchClasses" type="text" placeholder="Search Classes">
             <span class="icon is-left">
               <i class="fas fa-search" aria-hidden="true" id="search"></i>
             </span>
-          </p>
+          </div>
+          <div class="control">
+            <a class="button is-info" id="searchButton">
+              <strong>Search</strong>
+            </a>
+            <a class="button is-light" id="clearButton">
+              Clear
+            </a>
+          </div>
         </div>
         <br>
-        <div class="searchfunction">
-          <a class="button is-info" id="searchButton">
-          <em>Search</em>
-          </a>
-          <a class="button is-danger is-light" id="clearButton">
-          Clear
-          </a>
-        </div>
-        <br>
-        <div id="addNew">
-          <div class="tile is-ancestor">
-            <div class="tile is-parent">
-              <div class="tile is-child box is-flex is-horizontal-center" id="new_posting">
-                <i class="icon fas fa-plus is-large"></i>
-              </div>
+        <div id="topOfPage">
+        <div class="tile is-ancestor">
+          <div class="tile is-parent">
+            <div class="tile is-child box is-flex is-horizontal-center" id="new_posting">
+              <i class="icon fas fa-plus is-large"></i>
+            </div>
+            <div class="tile is-child box is-flex is-horizontal-center" id="refresh_button">
+              <i class="icon fas fa-sync is-large"></i>
             </div>
           </div>
         </div>
+      </div>
         <br>
     </div>
   </section>
@@ -86,7 +88,13 @@ function postingView() {
 
   $('#root').on('click', '#new_posting', function(event) {
     let newPostingDiv = newPosting();
-    $('#addNew').append(newPostingDiv);
+    $('#topOfPage').append(newPostingDiv);
+  });
+
+  $('#root').on('click', '#refresh_button', function(event) {
+    $('#topOfPage').nextAll().remove();
+    $('.container').append('<br>');
+    appendMeetings();
   });
 
 $('#root').on('click', '#clearButton', function(event) {
@@ -131,7 +139,7 @@ async function BindControls() {
   let classes = call.data;
     $('#searchClasses').autocomplete({
         source: classes,
-        delay: 200,
+        delay: 250,
         minLength: 0,
         scroll: true
     }).focus(function() {
