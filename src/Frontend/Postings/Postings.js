@@ -51,6 +51,15 @@ function postingView() {
           </p>
         </div>
         <br>
+        <div class="searchfunction">
+          <a class="button is-light" id="searchButton">
+          Search
+          </a>
+          <a class="button is-light" id="clearButton">
+          Clear
+          </a>
+        </div>
+        <br>
         <div id="addNew">
           <div class="tile is-ancestor">
             <div class="tile is-parent">
@@ -100,10 +109,15 @@ function postingView() {
     }
 });
 
-$('#root').on('click', '#search', function(event) {
-  let holder = $('#search').val();
+$('#root').on('click', '#searchButton', function(event) {
+  let holder = $('#searchClasses').val();
 
   if(holder.length == 8){
+    hidden.forEach((id) => {
+      $(`#fullDiv${id}`).toggle();
+      $(`#br${id}`).toggle();
+    })
+    hidden = [];
     ids.forEach((id) =>{
       if ($(`#name${id}`).text() != holder){
         hidden.push(id);
@@ -111,13 +125,7 @@ $('#root').on('click', '#search', function(event) {
         $(`#br${id}`).toggle();
       }
     })
-  } else {
-     hidden.forEach((id) => {
-       $(`#fullDiv${id}`).toggle();
-       $(`#br${id}`).toggle();
-     })
-     hidden = [];
-  }
+  } 
 });
 
   $(document).ready(function() {
