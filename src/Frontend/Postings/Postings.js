@@ -262,6 +262,7 @@ function newPosting() {
 
     $('#newPostingDiv').replaceWith(newDiv);
 
+    BindControls();
   })
 
 return newPostingView;
@@ -422,6 +423,7 @@ function meetingView(meeting) {
     });
 
     $('#fullDiv'+meeting.id).remove();
+    $('#br'+meeting.id).remove();
   })
 
   $('#root').on('click', '#commentButton'+meeting.id, async function(event) {
