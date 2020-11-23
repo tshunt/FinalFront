@@ -88,11 +88,13 @@ function postingView() {
         if ($(`#name${id}`).text() != holder){
           hidden.push(id);
           $(`#fullDiv${id}`).toggle();
+          $(`#br${id}`).toggle();
         }
       })
     } else {
        hidden.forEach((id) => {
          $(`#fullDiv${id}`).toggle();
+         $(`#br${id}`).toggle();
        })
        hidden = [];
     }
@@ -470,6 +472,6 @@ async function appendMeetings() {
             withCredentials: true,
         });
         $('.container').append(meetingView(meeting.data));
-        $('.container').append(`<br>`);
+        $('.container').append(`<br id="br${mtg}">`);
     })
 }
