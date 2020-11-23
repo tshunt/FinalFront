@@ -80,8 +80,8 @@ function postingView() {
     $('#addNew').append(newPostingDiv);
   });
 
-  $('#root').on('input', '#AutoSearch', function(event) {
-    let holder = $('#AutoSearch').val();
+  $('#root').on('input', '#searchClasses', function(event) {
+    let holder = $('#searchClasses').val();
 
     if(holder.length == 8){
       ids.forEach((id) =>{
