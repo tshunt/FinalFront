@@ -127,7 +127,7 @@ function generateMeetingView(data) {
             <p is-size-5><strong>Current Attendees:</strong> ${printAttendees(data.attendees)} </p>
             <br>
 
-            <button class="button" id="cancelButton${data.id}">Cancel Meeting</button>
+            <!--<button class="button" id="cancelButton${data.id}">Cancel Meeting</button>-->
         </div>
       </div>
   `);
