@@ -1,5 +1,7 @@
 let currUser;
 let meetingUser;
+let hidden = [];
+let ids;
 function postingView() {
     let postingView = $(`
     <div className="Postings">
@@ -77,6 +79,24 @@ function postingView() {
     let newPostingDiv = newPosting();
     $('#addNew').append(newPostingDiv);
   });
+
+  $('#root').on('input', '#AutoSearch', function(event) {
+    let holder = $('#AutoSearch').val();
+
+    if(holder.length == 8){
+      ids.forEach((id) =>{
+        if ($(`#name${id}`).text() != holder){
+          hidden.push(id);
+          $(`#fullDiv${id}`).toggle();
+        }
+      })
+    } else {
+       hidden.forEach((id) => {
+         $(`#fullDiv${id}`).toggle();
+       })
+       hidden = [];
+    }
+});
 
   $(document).ready(function() {
     BindControls();
