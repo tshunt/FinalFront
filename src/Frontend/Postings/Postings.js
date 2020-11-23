@@ -89,15 +89,14 @@ function postingView() {
           let compare = $(`#name${id}`).text().toString();
           if ($(`#name${id}`).text() != holder){
             hidden.push(id);
-            console.log($(`fullDiv${id}`));
             $(`#fullDiv${id}`).toggle();
           }
         })
       } else {
-        // hidden.forEach((id) => {
-        //   $(`fullDiv${id}`).show();
-
-        // })
+         hidden.forEach((id) => {
+           $(`#fullDiv${id}`).toggle();
+         })
+         hidden = [];
       }
   });
 
