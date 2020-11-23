@@ -81,6 +81,10 @@ async function getMeetingsData() {
 
     meetings = meetings.data;
 
+    if(meetings.length === 0) {
+      $('.container').append(`<h2 class="subtitle has-text-white has-text-centered">No meetings joined. Why don't you head to the postings tab and check some out?</h2>`);
+    }
+
     // console.log(meetings);
 
     meetings.forEach(async (mtg) => {
