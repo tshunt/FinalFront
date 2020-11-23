@@ -89,24 +89,13 @@ function postingView() {
     $('#addNew').append(newPostingDiv);
   });
 
-  $('#root').on('input', '#searchClasses', function(event) {
-    let holder = $('#searchClasses').val();
-
-    if(holder.length == 8){
-      ids.forEach((id) =>{
-        if ($(`#name${id}`).text() != holder){
-          hidden.push(id);
-          $(`#fullDiv${id}`).toggle();
-          $(`#br${id}`).toggle();
-        }
-      })
-    } else {
-       hidden.forEach((id) => {
-         $(`#fullDiv${id}`).toggle();
-         $(`#br${id}`).toggle();
-       })
-       hidden = [];
-    }
+$('#root').on('click', '#clearButton', function(event) {
+  hidden.forEach((id) => {
+    $(`#fullDiv${id}`).toggle();
+    $(`#br${id}`).toggle();
+  })
+  hidden = [];
+  $('#searchClasses').val("");
 });
 
 $('#root').on('click', '#searchButton', function(event) {
@@ -126,7 +115,7 @@ $('#root').on('click', '#searchButton', function(event) {
       }
     })
   } 
-});
+})
 
   $(document).ready(function() {
     BindControls();
