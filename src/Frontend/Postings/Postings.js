@@ -215,7 +215,7 @@ function newPosting() {
       </header>
       <div class="card-content">
           <div class="control">
-            <textarea id="className" class="input" type="text" placeholder="Course Number"></textarea>
+            <textarea id="className" class="input" type="text" placeholder="Course Number (DEPT NUM, ex: Comp 101)"></textarea>
           </div>
           <div class="control">
             <textarea id="date" class="input" type="text" placeholder="Meeting Date (MM/DD/YYYY)"></textarea>
