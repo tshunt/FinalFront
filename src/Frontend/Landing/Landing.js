@@ -103,7 +103,7 @@ function landingView() {
         </div>
         <div class="message-body">
           We're glad you agree! Sign up using the button at the top of the page, then try checking
-          out the calendar or forum tabs to set up a meeting!
+          out the postings tab to set up a meeting!
         </div>
       </article>
       <br>
