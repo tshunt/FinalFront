@@ -52,10 +52,10 @@ function postingView() {
         </div>
         <br>
         <div class="searchfunction">
-          <a class="button is-light" id="searchButton">
-          Search
+          <a class="button is-info" id="searchButton">
+          <em>Search</em>
           </a>
-          <a class="button is-light" id="clearButton">
+          <a class="button is-danger is-light" id="clearButton">
           Clear
           </a>
         </div>
