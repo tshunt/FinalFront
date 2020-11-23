@@ -5,3 +5,20 @@ body {
 .is-horizontal-center {
     justify-content: center;
 }
+
+.title {
+    text-shadow: -0.5px 1px 2px #000;
+}
+
+.hero-body {
+    background-image: url("back_study.png");
+    background-size: cover;
+}
+
+#new_posting :hover{
+    color: #86c2eb;
+}
+
+#refresh_button :hover {
+    color: #86c2eb;
+}

@@ -61,7 +61,7 @@ function landingView() {
         </div>
       </article>
 
-      <div class="containter has-text-centered">
+      <div class="containter has-text-centered" id="main_desc">
         <h1 class="title has-text-light">How it works:</h1>
       </div>
       <br>

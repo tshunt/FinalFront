@@ -86,6 +86,7 @@ function postingView() {
     $('#root').append(allMeetingsView());
   })
 
+  //THE ISSUE IS HERE
   $('#root').on('click', '#new_posting', function(event) {
     let newPostingDiv = newPosting();
     $('#topOfPage').append(newPostingDiv);
@@ -384,7 +385,7 @@ function meetingView(meeting) {
 
 
   meetingViewDiv.append(`
-  <h1 class="title is-size-5 has-text-centered">Comments </h1>
+  <h1 class="subtitle is-size-5 has-text-centered"> <strong> Comments </strong></h1>
   `);
   if (meeting.comments.length !== 0) {
     meeting.comments.forEach(msg => {
