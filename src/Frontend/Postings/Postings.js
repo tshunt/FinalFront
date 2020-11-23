@@ -262,7 +262,6 @@ function newPosting() {
 
     $('#newPostingDiv').replaceWith(newDiv);
 
-    BindControls();
   })
 
 return newPostingView;
