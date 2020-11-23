@@ -1,5 +1,8 @@
 let currUser;
 let meetingUser;
+let meetingList;
+let hidden = [];
+let ids;
 function postingView() {
     let postingView = $(`
     <div className="Postings">
@@ -78,9 +81,32 @@ function postingView() {
     $('#addNew').append(newPostingDiv);
   });
 
+<<<<<<< HEAD
   $(document).ready(function() {
     BindControls();
 });
+=======
+  $('#root').on('input', '#AutoSearch', function(event) {
+      let holder = $('#AutoSearch').val();
+
+      if(holder.length == 8){
+        ids.forEach((id) =>{
+          let compare = $(`#name${id}`).text().toString();
+          if ($(`#name${id}`).text() != holder){
+            hidden.push(id);
+            console.log($(`fullDiv${id}`));
+            $(`fullDiv${id}`).toggle();
+          }
+        })
+      } else {
+        // hidden.forEach((id) => {
+        //   $(`fullDiv${id}`).show();
+
+        // })
+      }
+  });
+
+>>>>>>> c5cd58257c6b1b20d9415df417b1771bb309f446
 
 async function BindControls() {
   let call = await axios({
@@ -99,6 +125,27 @@ async function BindControls() {
         $(this).autocomplete("search", "");
     });
 }
+
+
+    $(document).ready(function() {
+      BindControls();
+  });
+  
+  function BindControls() {
+      var Countries = ['COMP 101', 'COMP 110', 'COMP 116', 'COMP 126', 'COMP 180', 'COMP 185', 'COMP 190', 'COMP 210', 'COMP 211', 'COMP 222', 'COMP 227', 'COMP 283',
+      'COMP 290', 'COMP 293', 'COMP 301', 'COMP 311', 'COMP 325', 'COMP 380', 'COMP 388', 'COMP 390', 'COMP 393', 'COMP 401', 'COMP 410', 'COMP 411', 'COMP 426', 'COMP 431',
+      'COMP 433', 'COMP 435', 'COMP 447', 'COMP 455', 'COMP 475', 'COMP 486', 'COMP 487', 'COMP 488', 'COMP 495', 'COMP 496', 'COMP 520', 'COMP 521', 'COMP 523', 'COMP 524',
+      'COMP 530', 'COMP 533', 'COMP 535', 'COMP 541', 'COMP 550', 'COMP 555', 'COMP 560', 'COMP 562', 'COMP 572', 'COMP 575', 'COMP 576', 'COMP 580', 'COMP 581', 'COMP 585',
+      'COMP 590', 'COMP 630', 'COMP 631', 'COMP 633', 'COMP 635', 'COMP 636', 'COMP 651', 'COMP 655', 'COMP 662', 'COMP 665', 'COMP 672', 'COMP 690'];
+  
+      $('#tbCountries').autocomplete({
+          source: Countries,
+          minLength: 0,
+          scroll: true
+      }).focus(function() {
+          $(this).autocomplete("search", "");
+      });
+  }
 
   return postingView;
 }
@@ -310,9 +357,7 @@ function meetingView(meeting) {
   let meetingViewDiv = $(`
       <div class="card" id="fullDiv${meeting.id}">
         <header class="card-header">
-            <h2 class="card-header-title is-size-3">
-                ${meeting.className}
-            </h2>
+            <h2 class="card-header-title is-size-3" id="name${meeting.id}">${meeting.className}</h2>
         </header>
         <div class="card-content" id="mainCard${meeting.id}">
             <p><strong>Creator:</strong> ${meeting.owner} </p>
@@ -443,7 +488,7 @@ async function appendMeetings() {
         url: 'https://stark-depths-67325.herokuapp.com/meeting',
         withCredentials: true,
     });
-
+    ids = meetings.data;
     meetings = meetings.data;
 
     meetings.forEach(async (mtg) => {
