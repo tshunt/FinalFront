@@ -80,7 +80,7 @@ function postingView() {
     $('#addNew').append(newPostingDiv);
   });
 
-  $('#root').on('input', '#searchClasses', function(event) {
+  $('#root').on('input paste', '#searchClasses', function(event) {
     let holder = $('#searchClasses').val();
 
     if(holder.length == 8){
@@ -261,7 +261,6 @@ function newPosting() {
     let newDiv = meetingView(reply.data);
 
     $('#newPostingDiv').replaceWith(newDiv);
-
   })
 
 return newPostingView;
