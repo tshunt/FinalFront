@@ -80,7 +80,7 @@ function postingView() {
     $('#addNew').append(newPostingDiv);
   });
 
-  $('#root').on('input paste', '#searchClasses', function(event) {
+  $('#root').on('input', '#searchClasses', function(event) {
     let holder = $('#searchClasses').val();
 
     if(holder.length == 8){
@@ -98,6 +98,26 @@ function postingView() {
        })
        hidden = [];
     }
+});
+
+$('#root').on('click', '.ui-widget', function(event) {
+  let holder = $('#searchClasses').val();
+
+  if(holder.length == 8){
+    ids.forEach((id) =>{
+      if ($(`#name${id}`).text() != holder){
+        hidden.push(id);
+        $(`#fullDiv${id}`).toggle();
+        $(`#br${id}`).toggle();
+      }
+    })
+  } else {
+     hidden.forEach((id) => {
+       $(`#fullDiv${id}`).toggle();
+       $(`#br${id}`).toggle();
+     })
+     hidden = [];
+  }
 });
 
   $(document).ready(function() {
